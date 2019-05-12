@@ -9,6 +9,5 @@ namespace HyperPCB.Core
         void UnRegister(IPin pin);
         IEnumerable<IPin> FindByResource<TResource>();
         IEnumerable<IPin> Find(Func<IPin, bool> predicate);
-
     }
 }

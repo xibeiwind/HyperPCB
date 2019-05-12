@@ -2,7 +2,6 @@
 {
     public interface IProcessNodeInput
     {
-
     }
 
     public interface IProcessNodeInput<out TResource>

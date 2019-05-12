@@ -1,4 +1,5 @@
 ﻿using System;
+using HyperPCB.Core.Enums;
 
 namespace HyperPCB.Core
 {
@@ -6,6 +7,6 @@ namespace HyperPCB.Core
     {
         Guid Id { get; }
         string Name { get; }
-
+        PinType Type { get; }
     }
 }

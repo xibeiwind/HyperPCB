@@ -9,8 +9,8 @@ namespace HyperPCB.Core
         Guid Id { get; }
         string Name { get; }
         ProcessNodeState NodeState { get; }
-        IProcessNodeContext NodeContext { get; }
         IEnumerable<IProcessNodeInputPin> InputPins { get; }
         IEnumerable<IProcessNodeOutputPin> OutputPins { get; }
+        IProcessNodeContext Context { get; }
     }
 }
