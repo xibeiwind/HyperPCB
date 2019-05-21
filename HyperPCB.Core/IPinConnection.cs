@@ -4,8 +4,13 @@ namespace HyperPCB.Core
 {
     public interface IPinConnection
     {
+
+    }
+    public interface IPinConnection<TResource> : IPinConnection
+        where TResource : IResource
+    {
         Guid Id { get; }
-        IProcessNodeInputPin In { get; set; }
-        IProcessNodeOutputPin Out { get; set; }
+        IProcessNodeInputPin<TResource> In { get; set; }
+        IProcessNodeOutputPin<TResource> Out { get; set; }
     }
 }

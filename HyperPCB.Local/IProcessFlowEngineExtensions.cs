@@ -1,4 +1,6 @@
-﻿namespace HyperPCB.Core
+﻿using HyperPCB.Core;
+
+namespace HyperPCB.Local
 {
     public static class IProcessFlowEngineExtensions
     {

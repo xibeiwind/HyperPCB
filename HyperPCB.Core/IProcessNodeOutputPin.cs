@@ -2,7 +2,10 @@
 {
     public interface IProcessNodeOutputPin : IPin
     {
-        void LinkTo(IProcessNodeInputPin inputPin);
-        void UnLink(IProcessNodeInputPin inputPin);
+
+    }
+    public interface IProcessNodeOutputPin<TResource> : IProcessNodeOutputPin
+        where TResource : IResource
+    {
     }
 }
