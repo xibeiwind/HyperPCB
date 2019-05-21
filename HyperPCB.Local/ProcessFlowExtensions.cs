@@ -1,13 +1,25 @@
-﻿namespace HyperPCB.Local
+﻿using System.Threading.Tasks;
+using HyperPCB.Core;
+using HyperPCB.Services;
+
+namespace HyperPCB.Local
 {
     static class ProcessFlowExtensions
     {
-        internal static void Load(this ProcessFlow flow)
+        public static async Task InitAsync(this IProcessFlow flow, IPinQueryService pinQueryService)
+        {
+            // deploy settings
+            foreach (var node in flow.Nodes)
+            {
+                await node.InitAsync();
+            }
+        }
+        internal static void Load(this IProcessFlow flow)
         {
 
         }
 
-        internal static string Save(this ProcessFlow flow)
+        internal static string Save(this IProcessFlow flow)
         {
             return default;
         }

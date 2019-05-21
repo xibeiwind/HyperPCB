@@ -8,22 +8,23 @@ using HyperPCB.Core.Enums;
 
 namespace HyperPCB.Local
 {
-    public class ProcessFlowEngine: IProcessFlowEngine
+    public class ProcessFlowEngine : IProcessFlowEngine
     {
         public FlowEngineState State { get; }
-        public void Init(IProcessFlow flow)
+        public async Task InitAsync(IProcessFlow flow)
+        {
+            await flow.InitAsync();
+        }
+
+        public Task StartAsync()
         {
             throw new NotImplementedException();
         }
 
-        public void Start()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Stop()
+        public Task StopAsync()
         {
             throw new NotImplementedException();
         }
     }
+
 }
