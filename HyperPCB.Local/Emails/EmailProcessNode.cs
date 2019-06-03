@@ -2,49 +2,43 @@
 using System.Collections.Generic;
 using HyperPCB.Core;
 using HyperPCB.Core.Enums;
+using HyperPCB.Local.Notify;
 
 namespace HyperPCB.Local.Emails
 {
-    public class EmailProcessNode : IProcessNode
+    public class EmailProcessNode : ProcessNode
     {
-        public Guid Id { get; }
-        public string Name { get; }
-        public ProcessNodeState NodeState { get; private set; }
-        public IEnumerable<IProcessNodeInputPin> InputPins { get; }
-        public IEnumerable<IProcessNodeOutputPin> OutputPins { get; }
-        public IProcessNodeContext Context => EmailContext;
 
         private EmailProcessNodeContext EmailContext { get; }
 
-        public EmailProcessNode(EmailProcessNodeContext context, string name)
+        public EmailProcessNode(EmailProcessNodeContext context, string name) : base(context, name, id: Guid.Empty)
         {
             this.EmailContext = context;
-            Name = name;
-
-            var inputPins = InitInputPins();
-            InputPins = inputPins;
-
-            OutputPins = new HashSet<IProcessNodeOutputPin>();
         }
 
-        private HashSet<IProcessNodeInputPin> InitInputPins()
+        protected override IEnumerable<IProcessNodeOutputPin> InitOutputPins()
         {
-            var pin = new ProcessNodeInputPin<EmailSendApply> { };
-            pin.NotifyReceived += EmailPin_NotifyReceived;
-            return new HashSet<IProcessNodeInputPin> { pin };
+            return new HashSet<IProcessNodeOutputPin>();
         }
 
-        private void EmailPin_NotifyReceived(object sender, EmailSendApply e)
+        protected override void ResourceArrived(IResource resource)
         {
-            Console.WriteLine($@"SendEmail: 
-From: {e.From}
-To: {e.To}
-Title: {e.Title}
-Content: {e.Content}
+            switch (resource)
+            {
+                case EmailSendApplyEvent emailSendApply:
+                    break;
+                case NotifySendApplyEvent notifySendApply:
+                    break;
+            }
+        }
 
-Thanks!
-Send By: [{Name}]!
-");
+        protected override IEnumerable<IProcessNodeInputPin> InitInputPins()
+        {
+
+            return new HashSet<IProcessNodeInputPin>
+            {
+                EmailProcessPinHelper.GetEmailInputPin(this),
+            };
         }
     }
 

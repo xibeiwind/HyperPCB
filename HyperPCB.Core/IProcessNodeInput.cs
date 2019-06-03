@@ -1,7 +1,10 @@
-﻿namespace HyperPCB.Core
+﻿using System;
+
+namespace HyperPCB.Core
 {
     public interface IProcessNodeInput
     {
+        Guid Id { get; set; }
     }
 
     public interface IProcessNodeInput<out TResource>

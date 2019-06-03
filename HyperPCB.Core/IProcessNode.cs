@@ -12,5 +12,6 @@ namespace HyperPCB.Core
         IEnumerable<IProcessNodeInputPin> InputPins { get; }
         IEnumerable<IProcessNodeOutputPin> OutputPins { get; }
         IProcessNodeContext Context { get; }
+        void ResourceArrived(IResource resource);
     }
 }

@@ -10,7 +10,7 @@ namespace HyperPCB.Core
         where TResource : IResource
     {
         Guid Id { get; }
-        IProcessNodeInputPin<TResource> In { get; set; }
-        IProcessNodeOutputPin<TResource> Out { get; set; }
+        IProcessNodeInputPin<TResource> In { get;  }
+        IProcessNodeOutputPin<TResource> Out { get;  }
     }
 }

@@ -11,6 +11,12 @@ namespace HyperPCB.Local
     public class ProcessNodeInputPin<TResource> : IProcessNodeInputPin<TResource>
         where TResource : IResource
     {
+        public ProcessNodeInputPin(Guid id, string name = default)
+        {
+            Id = id;
+            Name = name ?? $"{typeof(TResource).Name}InputPin";
+        }
+
         public event EventHandler<TResource> NotifyReceived;
         public async Task Receive(IProcessNodeInput<TResource> input)
         {
