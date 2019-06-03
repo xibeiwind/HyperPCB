@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Core.Enums;
 
@@ -24,6 +25,22 @@ namespace HyperPCB.Local
 
         public void ResourceArrived(IResource resource)
         {
+        }
+
+        public async Task StartAsync()
+        {
+            foreach (var node in Nodes)
+            {
+                await node.StartAsync();
+            }
+        }
+
+        public async Task StopAsync()
+        {
+            foreach (var node in Nodes)
+            {
+                await node.StopAsync();
+            }
         }
 
         public IEnumerable<IProcessNode> Nodes { get; } = new HashSet<IProcessNode>();
@@ -60,5 +77,7 @@ namespace HyperPCB.Local
             if (Connections is HashSet<IPinConnection> connectionSet)
                 connectionSet.RemoveWhere(a => a.Equals(connection));
         }
+
+
     }
 }

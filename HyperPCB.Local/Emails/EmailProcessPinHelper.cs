@@ -31,9 +31,18 @@ namespace HyperPCB.Local.Emails
             return pin;
         }
 
-        internal static IProcessNodeInputPin<EmailSendProcessedEvent> GetEmailSendProcessedPin()
+        internal static IProcessNodeOutputPin<EmailSendProcessedEvent> GetEmailSendProcessedPin()
         {
-            return new ProcessNodeInputPin<EmailSendProcessedEvent>(GuidUtil.NewSequentialId());
+            return new ProcessNodeOutputPin<EmailSendProcessedEvent>(GuidUtil.NewSequentialId());
         }
+
+        public static IProcessNodeInputPin GetNotifyInputPin(IProcessNode node)
+        {
+            var pin = new ProcessNodeInputPin<NotifySendApplyEvent>(GuidUtil.NewSequentialId(),
+                $"{nameof(NotifySendApplyEvent)}InputPin");
+            pin.NotifyReceived += (o, e) => { node.ResourceArrived(e); };
+            return pin;
+        }
+
     }
 }

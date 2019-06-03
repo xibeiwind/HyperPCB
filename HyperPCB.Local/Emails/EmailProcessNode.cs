@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Local.Notify;
 
@@ -17,7 +18,10 @@ namespace HyperPCB.Local.Emails
 
         protected override IEnumerable<IProcessNodeOutputPin> InitOutputPins()
         {
-            return new HashSet<IProcessNodeOutputPin>();
+            return new HashSet<IProcessNodeOutputPin>()
+            {
+                EmailProcessPinHelper.GetEmailSendProcessedPin(),
+            };
         }
 
         protected override void ResourceArrived(IResource resource)
@@ -32,11 +36,20 @@ namespace HyperPCB.Local.Emails
             }
         }
 
+        public override async Task StartAsync()
+        {
+        }
+
+        public override async Task StopAsync()
+        {
+        }
+
         protected override IEnumerable<IProcessNodeInputPin> InitInputPins()
         {
             return new HashSet<IProcessNodeInputPin>
             {
-                EmailProcessPinHelper.GetEmailInputPin(this)
+                EmailProcessPinHelper.GetEmailInputPin(this),
+                EmailProcessPinHelper.GetNotifyInputPin(this),
             };
         }
     }

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using HyperPCB.Core;
+using Yunyong.Core;
 
 namespace HyperPCB.Local.Notify
 {
@@ -12,7 +14,23 @@ namespace HyperPCB.Local.Notify
 
         protected override void ResourceArrived(IResource resource)
         {
-            throw new NotImplementedException();
+            //switch (resource)
+            //{
+            //    case NotifySendApplyEvent notifyEvent:
+            //        var pin = GetOutputPin<NotifySendApplyEvent>();
+            //        pin.Send(new ProcessNodeOutput<NotifySendApplyEvent>(notifyEvent));
+            //        break;
+            //}
+        }
+
+        public override Task StartAsync()
+        {
+            return TestSendNotifyLoopAsync();
+        }
+
+        public override async Task StopAsync()
+        {
+
         }
 
         protected override IEnumerable<IProcessNodeInputPin> InitInputPins()
@@ -29,6 +47,28 @@ namespace HyperPCB.Local.Notify
             {
                 NotifyProcessPinHelper.GetOutputPin()
             };
+        }
+
+
+
+        public async Task TestSendNotifyLoopAsync()
+        {
+            for (int i = 0; i < 10; i++)
+            {
+                await Task.Delay(2000);
+
+                Console.WriteLine(i);
+                var pin = GetOutputPin<NotifySendApplyEvent>();
+                await pin.Send(new ProcessNodeOutput<NotifySendApplyEvent>(
+                    new NotifySendApplyEvent(GuidUtil.NewSequentialId())
+                    {
+                        FromId = GuidUtil.NewSequentialId(),
+                        ToId = GuidUtil.NewSequentialId(),
+                        Title = $"Test Notify Message {i:000}",
+                        Content = $"This is notify content demo {i:0000}",
+                        Type = NotifyType.Info
+                    }));
+            }
         }
     }
 }

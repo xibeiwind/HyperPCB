@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Core.Enums;
 
@@ -32,6 +33,15 @@ namespace HyperPCB.Local
             ResourceArrived(resource);
         }
 
+        public abstract Task StartAsync();
+        public abstract Task StopAsync();
+
+        public  Task InitAsync()
+        {
+            NodeState = ProcessNodeState.Standby;
+            return Task.CompletedTask;
+        }
+
         protected abstract void ResourceArrived(IResource resource);
 
         protected IProcessNodeOutputPin GetOutputPin(string pinName)
@@ -41,13 +51,13 @@ namespace HyperPCB.Local
 
         protected IProcessNodeInputPin<TResource> GetInputPin<TResource>() where TResource : IResource
         {
-            return InputPins.FirstOrDefault(a => a.GetType().IsSubclassOf(typeof(IProcessNodeInputPin<TResource>)))
+            return InputPins.FirstOrDefault(a => a is IProcessNodeInputPin<TResource>)
                 as IProcessNodeInputPin<TResource>;
         }
 
         protected IProcessNodeOutputPin<TResource> GetOutputPin<TResource>() where TResource : IResource
         {
-            return OutputPins.FirstOrDefault(a => a.GetType().IsSubclassOf(typeof(IProcessNodeOutputPin<TResource>)))
+            return OutputPins.FirstOrDefault(a => a is IProcessNodeOutputPin<TResource>)
                 as IProcessNodeOutputPin<TResource>;
         }
 

@@ -7,21 +7,31 @@ namespace HyperPCB.Local
 {
     public class ProcessFlowEngine : IProcessFlowEngine
     {
-        public FlowEngineState State { get; }
+        public FlowEngineState State { get; private set; }
+
+        public IProcessFlow Flow { get; private set; }
 
         public async Task InitAsync(IProcessFlow flow)
         {
             await flow.InitAsync();
+            Flow = flow;
+            State = FlowEngineState.Standby;
         }
 
-        public Task StartAsync()
+        public async Task StartAsync()
         {
-            throw new NotImplementedException();
+            if (State != FlowEngineState.Standby)
+            {
+                throw new ArgumentException($"Engine State exception: {State}");
+            }
+            await this.Flow.StartAsync();
+            State = FlowEngineState.Running;
         }
 
-        public Task StopAsync()
+        public async Task StopAsync()
         {
-            throw new NotImplementedException();
+            await this.Flow.StopAsync();
+            State = FlowEngineState.Stoped;
         }
     }
 }

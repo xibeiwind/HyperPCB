@@ -13,7 +13,11 @@ namespace HyperPCB.Local.TestConsoleApp
         {
             Console.WriteLine("Hello World!");
 
-            var flow = BuildProcessFlowEngine();
+            var engine = await BuildProcessFlowEngine();
+
+            await engine.StartAsync();
+
+            Console.ReadLine();
         }
 
         private static async Task<IProcessFlowEngine> BuildProcessFlowEngine()
@@ -29,10 +33,18 @@ namespace HyperPCB.Local.TestConsoleApp
             var flow = new ProcessFlow(GuidUtil.NewSequentialId(), "TestProcessFlow");
 
 
-            flow.AddProcessNode(new NotifyProcessNode("NotifyProcessNode", GuidUtil.NewSequentialId()));
+            var notifyNode = new NotifyProcessNode("NotifyProcessNode", GuidUtil.NewSequentialId());
+            flow.AddProcessNode(notifyNode);
             var context = new EmailProcessNodeContext("send from [Test Console]");
 
-            flow.AddProcessNode(new EmailProcessNode(context, "EmailProcessNode", GuidUtil.NewSequentialId()));
+            var emailNode = new EmailProcessNode(context, "EmailProcessNode", GuidUtil.NewSequentialId());
+            flow.AddProcessNode(emailNode);
+
+            var pinConnection = new PinConnection<NotifySendApplyEvent>(GuidUtil.NewSequentialId(),
+                emailNode.GetInputPin<NotifySendApplyEvent>() as ProcessNodeInputPin<NotifySendApplyEvent>,
+                notifyNode.GetOutputPin<NotifySendApplyEvent>() as ProcessNodeOutputPin<NotifySendApplyEvent>);
+
+            flow.AddPinConnection(pinConnection);
 
             return flow;
         }

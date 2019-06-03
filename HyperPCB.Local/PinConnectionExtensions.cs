@@ -1,4 +1,5 @@
-﻿using HyperPCB.Core;
+﻿using System.Linq;
+using HyperPCB.Core;
 
 namespace HyperPCB.Local
 {
