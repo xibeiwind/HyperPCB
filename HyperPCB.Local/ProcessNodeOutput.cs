@@ -3,7 +3,7 @@
 namespace HyperPCB.Local
 {
     public class ProcessNodeOutput<TResource> : IProcessNodeOutput<TResource>, IProcessNodeInput<TResource>
-        where TResource:IResource
+        where TResource : IResource
     {
         public ProcessNodeOutput(TResource resource)
         {

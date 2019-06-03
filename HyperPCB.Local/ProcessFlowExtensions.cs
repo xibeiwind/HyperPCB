@@ -4,19 +4,16 @@ using HyperPCB.Services;
 
 namespace HyperPCB.Local
 {
-    static class ProcessFlowExtensions
+    internal static class ProcessFlowExtensions
     {
         public static async Task InitAsync(this IProcessFlow flow, IPinQueryService pinQueryService)
         {
             // deploy settings
-            foreach (var node in flow.Nodes)
-            {
-                await node.InitAsync();
-            }
+            foreach (var node in flow.Nodes) await node.InitAsync();
         }
+
         internal static void Load(this IProcessFlow flow)
         {
-
         }
 
         internal static string Save(this IProcessFlow flow)

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Core.Enums;
@@ -11,6 +8,7 @@ namespace HyperPCB.Local
     public class ProcessFlowEngine : IProcessFlowEngine
     {
         public FlowEngineState State { get; }
+
         public async Task InitAsync(IProcessFlow flow)
         {
             await flow.InitAsync();
@@ -26,5 +24,4 @@ namespace HyperPCB.Local
             throw new NotImplementedException();
         }
     }
-
 }

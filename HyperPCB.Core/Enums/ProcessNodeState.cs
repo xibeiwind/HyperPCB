@@ -2,5 +2,6 @@
 {
     public enum ProcessNodeState
     {
+        Standby
     }
 }

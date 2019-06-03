@@ -4,8 +4,8 @@ namespace HyperPCB.Core
 {
     public interface IProcessNodeInputPin : IPin
     {
-
     }
+
     public interface IProcessNodeInputPin<in TResource> : IProcessNodeInputPin
         where TResource : IResource
     {

@@ -1,20 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using HyperPCB.Core;
-using HyperPCB.Core.Enums;
 using HyperPCB.Local.Notify;
 
 namespace HyperPCB.Local.Emails
 {
-    public class EmailProcessNode : ProcessNode
+    public sealed partial class EmailProcessNode : ProcessNode
     {
+        public EmailProcessNode(EmailProcessNodeContext context, string name, Guid id) :
+            base(context, name, id)
+        {
+            EmailContext = context;
+        }
 
         private EmailProcessNodeContext EmailContext { get; }
-
-        public EmailProcessNode(EmailProcessNodeContext context, string name) : base(context, name, id: Guid.Empty)
-        {
-            this.EmailContext = context;
-        }
 
         protected override IEnumerable<IProcessNodeOutputPin> InitOutputPins()
         {
@@ -28,16 +27,16 @@ namespace HyperPCB.Local.Emails
                 case EmailSendApplyEvent emailSendApply:
                     break;
                 case NotifySendApplyEvent notifySendApply:
+                    SendEmail(notifySendApply);
                     break;
             }
         }
 
         protected override IEnumerable<IProcessNodeInputPin> InitInputPins()
         {
-
             return new HashSet<IProcessNodeInputPin>
             {
-                EmailProcessPinHelper.GetEmailInputPin(this),
+                EmailProcessPinHelper.GetEmailInputPin(this)
             };
         }
     }

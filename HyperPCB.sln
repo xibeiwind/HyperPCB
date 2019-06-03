@@ -7,11 +7,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Core", "HyperPCB.C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Local", "HyperPCB.Local\HyperPCB.Local.csproj", "{568C3E29-B51C-44C0-94A0-BF4F53281444}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.Visualizar", "HyperPCB.Visualizar\HyperPCB.Visualizar.csproj", "{989640A9-5764-4156-82D9-66C7A08C12F3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Visualizar", "HyperPCB.Visualizar\HyperPCB.Visualizar.csproj", "{989640A9-5764-4156-82D9-66C7A08C12F3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.Services", "HyperPCB.Services\HyperPCB.Services.csproj", "{6413A650-C58C-40BA-9F39-93F36ABB4493}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Services", "HyperPCB.Services\HyperPCB.Services.csproj", "{6413A650-C58C-40BA-9F39-93F36ABB4493}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.Services.Abstrictions", "HyperPCB.Services.Abstrictions\HyperPCB.Services.Abstrictions.csproj", "{4FA606A4-84CE-4998-85F7-04AA86A93F41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Services.Abstrictions", "HyperPCB.Services.Abstrictions\HyperPCB.Services.Abstrictions.csproj", "{4FA606A4-84CE-4998-85F7-04AA86A93F41}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{2F9E4B25-D183-4DA4-99BA-8AC48AA41644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.Local.TestConsoleApp", "HyperPCB.Local.TestConsoleApp\HyperPCB.Local.TestConsoleApp.csproj", "{6427AE5A-F425-4DB0-9915-AEEC6A685624}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -83,9 +87,24 @@ Global
 		{4FA606A4-84CE-4998-85F7-04AA86A93F41}.Release|x64.Build.0 = Release|Any CPU
 		{4FA606A4-84CE-4998-85F7-04AA86A93F41}.Release|x86.ActiveCfg = Release|Any CPU
 		{4FA606A4-84CE-4998-85F7-04AA86A93F41}.Release|x86.Build.0 = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|x64.Build.0 = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Debug|x86.Build.0 = Debug|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x64.ActiveCfg = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x64.Build.0 = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x86.ActiveCfg = Release|Any CPU
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{6427AE5A-F425-4DB0-9915-AEEC6A685624} = {2F9E4B25-D183-4DA4-99BA-8AC48AA41644}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {988D9BDD-2113-4B26-9A8A-E7831F7AD0EC}

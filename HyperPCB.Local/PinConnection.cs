@@ -11,15 +11,13 @@ namespace HyperPCB.Local
             InPin = inPin;
             OutPin = outPin;
 
-            OutPin.NotifySend += async (sender, resource) =>
-            {
-                await InPin.Receive(resource.ToInput());
-            };
+            OutPin.NotifySend += async (sender, resource) => { await InPin.Receive(resource.ToInput()); };
         }
 
-        public Guid Id { get; }
         private ProcessNodeInputPin<TResource> InPin { get; }
         private ProcessNodeOutputPin<TResource> OutPin { get; }
+
+        public Guid Id { get; }
         public IProcessNodeInputPin<TResource> In => InPin;
         public IProcessNodeOutputPin<TResource> Out => OutPin;
     }
