@@ -6,13 +6,10 @@
 
   <ItemGroup>
     <PackageReference Include="Yunyong.Core" Version="1.0.9" />
-    <PackageReference Include="Yunyong.EventBus" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\HyperPCB.Core\HyperPCB.Core.csproj" />
-    <ProjectReference Include="..\HyperPCB.Services.Abstrictions\HyperPCB.Services.Abstrictions.csproj" />
-    <ProjectReference Include="..\HyperPCB.ViewModels\HyperPCB.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

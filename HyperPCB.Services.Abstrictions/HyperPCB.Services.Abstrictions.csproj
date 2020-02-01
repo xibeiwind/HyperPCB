@@ -6,11 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Yunyong.Core" Version="1.0.7" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\HyperPCB.Core\HyperPCB.Core.csproj" />
+    <ProjectReference Include="..\HyperPCB.ViewModels\HyperPCB.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>

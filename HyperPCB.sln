@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Services.Abstricti
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Local", "Local", "{2F9E4B25-D183-4DA4-99BA-8AC48AA41644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.Local.TestConsoleApp", "HyperPCB.Local.TestConsoleApp\HyperPCB.Local.TestConsoleApp.csproj", "{6427AE5A-F425-4DB0-9915-AEEC6A685624}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HyperPCB.Local.TestConsoleApp", "HyperPCB.Local.TestConsoleApp\HyperPCB.Local.TestConsoleApp.csproj", "{6427AE5A-F425-4DB0-9915-AEEC6A685624}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HyperPCB.ViewModels", "HyperPCB.ViewModels\HyperPCB.ViewModels.csproj", "{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -99,6 +101,18 @@ Global
 		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x64.Build.0 = Release|Any CPU
 		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x86.ActiveCfg = Release|Any CPU
 		{6427AE5A-F425-4DB0-9915-AEEC6A685624}.Release|x86.Build.0 = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|x64.Build.0 = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Debug|x86.Build.0 = Debug|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|x64.ActiveCfg = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|x64.Build.0 = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|x86.ActiveCfg = Release|Any CPU
+		{EB7C1D4C-AC5B-49CE-84BC-532E0ED36F75}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
