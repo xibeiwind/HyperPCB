@@ -1,11 +1,11 @@
-﻿using System;
+﻿using HyperPCB.Core;
+using HyperPCB.Core.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HyperPCB.Core;
-using HyperPCB.Core.Enums;
 
-namespace HyperPCB.Local
+namespace HyperPCB.Serve
 {
     public abstract class ProcessNode : IProcessNode
     {
@@ -27,8 +27,8 @@ namespace HyperPCB.Local
 
         public Guid Id { get; }
         public string Name { get; }
-        public ProcessNodeState NodeState { get; protected set; }
-        public IEnumerable<IProcessNodeInputPin> InputPins { get; } 
+        public ProcessNodeState NodeState { get; private set; }
+        public IEnumerable<IProcessNodeInputPin> InputPins { get; }
         public IEnumerable<IProcessNodeOutputPin> OutputPins { get; }
         public IProcessNodeContext Context { get; }
 
@@ -37,10 +37,24 @@ namespace HyperPCB.Local
             ResourceArrived(resource);
         }
 
-        public abstract Task StartAsync();
-        public abstract Task StopAsync();
+        public async Task StartAsync()
+        {
+            await OnStartAsync();
+            this.NodeState = ProcessNodeState.Start;
 
-        public  Task InitAsync()
+        }
+
+        protected abstract Task OnStartAsync();
+        public async Task StopAsync()
+        {
+
+            await OnStopAsync();
+            this.NodeState = ProcessNodeState.Stop;
+        }
+
+        protected abstract Task OnStopAsync();
+
+        public Task InitAsync()
         {
             NodeState = ProcessNodeState.Standby;
             return Task.CompletedTask;

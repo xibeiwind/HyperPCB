@@ -8,6 +8,10 @@ namespace HyperPCB.Local
     public class ProcessNodeInputPin<TResource> : IProcessNodeInputPin<TResource>
         where TResource : IResource
     {
+        private ProcessNodeInputPin()
+        {
+
+        }
         public ProcessNodeInputPin(Guid id, string name = default)
         {
             Id = id;

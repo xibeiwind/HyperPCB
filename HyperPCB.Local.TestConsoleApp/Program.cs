@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Local.Emails;
 using HyperPCB.Local.Notify;
+using Newtonsoft.Json;
 using Yunyong.Core;
 
 namespace HyperPCB.Local.TestConsoleApp
@@ -11,13 +12,37 @@ namespace HyperPCB.Local.TestConsoleApp
     {
         private static async Task Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            //Console.WriteLine("Hello World!");
 
-            var engine = await BuildProcessFlowEngine();
+            //var engine = await BuildProcessFlowEngine();
 
-            await engine.StartAsync();
+            var settings = new JsonSerializerSettings
+            {
+                TypeNameHandling = TypeNameHandling.All,
+                NullValueHandling = NullValueHandling.Ignore,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+                ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor
+            };
+            //var json = JsonConvert.SerializeObject(engine, Formatting.Indented, settings);
+            //Console.WriteLine(json);
 
-            Console.ReadLine();
+            //var tmp = JsonConvert.DeserializeObject<IProcessFlowEngine>(json, settings);
+
+            ////await engine.StartAsync();
+
+            //await tmp.StartAsync();
+            //Console.ReadLine();
+
+            var flow =new ProcessFlow( "TEST", Guid.NewGuid());
+            var json = JsonConvert.SerializeObject(flow, Formatting.Indented, settings);
+            Console.WriteLine(json);
+            var tmp = JsonConvert.DeserializeObject(json, settings);
+
+            var node = new NotifyProcessNode("TestNode", Guid.NewGuid());
+
+            var nodeJson = JsonConvert.SerializeObject(node, settings);
+            var tmpNode = JsonConvert.DeserializeObject(nodeJson, settings);
+            
         }
 
         private static async Task<IProcessFlowEngine> BuildProcessFlowEngine()
@@ -30,7 +55,7 @@ namespace HyperPCB.Local.TestConsoleApp
 
         private static IProcessFlow BuildProcessFlow()
         {
-            var flow = new ProcessFlow(GuidUtil.NewSequentialId(), "TestProcessFlow");
+            var flow = new ProcessFlow( "TestProcessFlow", GuidUtil.NewSequentialId());
 
 
             var notifyNode = new NotifyProcessNode("NotifyProcessNode", GuidUtil.NewSequentialId());

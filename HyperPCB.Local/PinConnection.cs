@@ -5,6 +5,10 @@ namespace HyperPCB.Local
 {
     public class PinConnection<TResource> : IPinConnection<TResource> where TResource : IResource
     {
+        private PinConnection()
+        {
+
+        }
         public PinConnection(Guid id, ProcessNodeInputPin<TResource> inPin, ProcessNodeOutputPin<TResource> outPin)
         {
             Id = id;

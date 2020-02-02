@@ -4,43 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using HyperPCB.Core;
 using HyperPCB.Core.Enums;
+using Yunyong.Core;
 
 namespace HyperPCB.Local
 {
-    public sealed class ProcessFlow : IProcessFlow
+    public sealed class ProcessFlow : ProcessNode, IProcessFlow
     {
-        public ProcessFlow(Guid id, string name)
+
+        public ProcessFlow(string name, Guid id) : base(null, name, id)
         {
-            Id = id;
-            Name = name;
-        }
-
-        public Guid Id { get; }
-        public string Name { get; }
-        public ProcessNodeState NodeState { get; } = ProcessNodeState.Standby;
-        public IEnumerable<IProcessNodeInputPin> InputPins { get; } = new HashSet<IProcessNodeInputPin>();
-        public IEnumerable<IProcessNodeOutputPin> OutputPins { get; } = new HashSet<IProcessNodeOutputPin>();
-        public IProcessNodeContext Context { get; }
-
-
-        public void ResourceArrived(IResource resource)
-        {
-        }
-
-        public async Task StartAsync()
-        {
-            foreach (var node in Nodes)
-            {
-                await node.StartAsync();
-            }
-        }
-
-        public async Task StopAsync()
-        {
-            foreach (var node in Nodes)
-            {
-                await node.StopAsync();
-            }
         }
 
         public IEnumerable<IProcessNode> Nodes { get; } = new HashSet<IProcessNode>();
@@ -79,5 +51,53 @@ namespace HyperPCB.Local
         }
 
 
+
+        protected override IEnumerable<IProcessNodeInputPin> InitInputPins()
+        {
+
+            return new HashSet<IProcessNodeInputPin>
+            {
+                //ProcessFlowPinHelper.GetInputPin(this)
+            };
+        }
+
+        protected override IEnumerable<IProcessNodeOutputPin> InitOutputPins()
+        {
+            return new HashSet<IProcessNodeOutputPin>
+            {
+                //ProcessFlowPinHelper.GetOutputPin()
+            };
+        }
+
+        public override async Task StartAsync()
+        {
+            foreach (var node in Nodes)
+            {
+                await node.StartAsync();
+            }
+        }
+
+        public override async Task StopAsync()
+        {
+            foreach (var node in Nodes)
+            {
+                await node.StopAsync();
+            }
+        }
+
+        protected override void ResourceArrived(IResource resource)
+        {
+
+        }
     }
+
+    //public static class ProcessFlowPinHelper
+    //{
+    //    internal static IProcessNodeInputPin<IProcessNodeInputPin> GetInputPin(IProcessFlow node)
+    //    {
+    //        var pin = new ProcessNodeInputPin<IProcessNodeInputPin>(GuidUtil.NewSequentialId());
+    //        pin.NotifyReceived += (sender, e) => { node.ResourceArrived(e); };
+    //        return pin;
+    //    }
+    //}
 }

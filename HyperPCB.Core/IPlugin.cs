@@ -1,6 +1,8 @@
-﻿namespace HyperPCB.Core
+﻿using System.Collections.Generic;
+
+namespace HyperPCB.Core
 {
-    public interface IPlugin
+    public interface IPlugin : IProcessFlow
     {
     }
 }
